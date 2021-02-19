@@ -44,6 +44,26 @@ public class WebSDK_Driver_Manager {
         return driver;
     }
 
+    public static WebDriver Get_Mobile(String browser) {
+        WebDriver driver ;
+
+        switch (Objects.requireNonNull(getProperty(browser))) {
+            case "firefox":
+
+                driver = new FirefoxDriver();
+                driver.get("https://www.amazon.com/");
+                break;
+
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+
+            default:
+                driver = new ChromeDriver();
+                driver.get("https://www.amazon.com/");
+        }
+        return driver;
+    }
 
 
     public static String getProperty(String key) {

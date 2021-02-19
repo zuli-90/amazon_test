@@ -2,37 +2,23 @@ package Source.Step_Definition;
 
 import Source.Config.ScreenRecorderUtil;
 import Source.Config.WebSDK_Driver_Manager;
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
-import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
-import static org.junit.Assert.assertTrue;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,12 +42,10 @@ public class Step_Definiton {
         System.out.println("----------------------------------------- .......Test starting....... -----------------------------------------");
         this.scenario = scenario;
 
-        ScreenRecorderUtil.startRecord("Test_Record");
-
     }
 
     @After()
-    public void afterUp() {
+    public void afterUp() throws Exception {
         if (this.scenario.isFailed()) {
         }
         if (driver != null) {
@@ -71,9 +55,9 @@ public class Step_Definiton {
     }
 
     @Given("^User go  to Amazon \"([^\"]*)\" version$")
-    public void userGoToAmazonVersion(String version) throws Throwable {
+    public void userGoToAmazonVersion(String version){
         driver = WebSDK_Driver_Manager.Get_Driver("chrome");
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
@@ -82,6 +66,8 @@ public class Step_Definiton {
         driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT, TimeUnit.SECONDS);
         this.wait = new WebDriverWait(driver, SHORT_TIMEOUT);
     }
+
+
 
     @Then("^Check if the search box is present$")
     public void checkIfTheSearchBoxIsPresent() {

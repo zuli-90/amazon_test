@@ -11,10 +11,10 @@
         <protocol>https</protocol>
 
         <!-- title of the document -->
-        <documentTitle>Contoworks Test Report</documentTitle>
+        <documentTitle>Amazon Test Report</documentTitle>
 
         <!-- report name - displayed at top-nav -->
-        <reportName>Contoworks Test Report</reportName>
+        <reportName>Amazon Test Report</reportName>
         <testViewChartLocation>bottom</testViewChartLocation>
         <!-- global date format override -->  <!-- defaults to yyyy-MM-dd -->
         <dateFormat>yyyy-MM-dd</dateFormat>
