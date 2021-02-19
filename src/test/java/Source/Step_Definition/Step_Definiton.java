@@ -54,8 +54,8 @@ public class Step_Definiton {
         }
     }
 
-    @Given("^User go  to Amazon \"([^\"]*)\" version$")
-    public void userGoToAmazonVersion(String version){
+    @Given("^User go  to Amazon$")
+    public void userGoToAmazonVersion(){
         driver = WebSDK_Driver_Manager.Get_Driver("chrome");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
